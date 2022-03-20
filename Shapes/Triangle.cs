@@ -52,7 +52,7 @@ namespace Shapes
             double[] sidesAscending = sides.OrderBy(x => x).ToArray();
             
             return CompareWithTolerance(
-                Math.Pow(sidesAscending[0], 2) * Math.Pow(sidesAscending[1], 2), 
+                Math.Pow(sidesAscending[0], 2) + Math.Pow(sidesAscending[1], 2), 
                 Math.Pow(sidesAscending[2], 2), 
                 comparisonTolerance);
         }
