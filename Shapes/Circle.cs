@@ -9,7 +9,7 @@ namespace Shapes
 
         public Circle(double radius)
         {
-            if (radius <= 0) 
+            if (radius <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(radius), "Radius must be bigger than zero.");
             }
