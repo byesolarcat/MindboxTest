@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Shapes
 {
@@ -14,12 +16,12 @@ namespace Shapes
             (HalfPerimeter - B) *
             (HalfPerimeter - C));
         public double Perimeter => A + B + C;
-
+        
         private double HalfPerimeter => Perimeter / 2;
 
         public Triangle(double a, double b, double c)
         {
-            const string lessThanZeroMessageFormat = "Side length must be bigger than zero."
+            const string lessThanZeroMessageFormat = "Side length must be bigger than zero.";
             if (a <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(a), lessThanZeroMessageFormat);
@@ -43,11 +45,25 @@ namespace Shapes
             C = c;
         }
 
+        public bool IsRight()
+        {
+            const double equalityTolerance = 0.0001;
+            double[] sides = new double[] {A, B, C};
+            double[] sidesAscending = sides.OrderBy(x => x).ToArray();
+            
+            return Math.Abs(Math.Pow(sidesAscending[0], 2) * Math.Pow(sidesAscending[1], 2) - Math.Pow(sidesAscending[2], 2)) < equalityTolerance;
+        }
+
         private bool IsValid(double a, double b, double c)
         {
             return (a + b > c)
                    && (a + c > b)
                    && (b + c > a);
+        }
+
+        private bool CompareWithTolerance(double a, double b, double tolerance)
+        {
+            return Math.Abs(a - b) < tolerance;
         }
     }
 }
