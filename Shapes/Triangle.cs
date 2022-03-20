@@ -47,21 +47,24 @@ namespace Shapes
 
         public bool IsRight()
         {
-            const double equalityTolerance = 0.0001;
+            const double comparisonTolerance = 0.0001;
             double[] sides = new double[] {A, B, C};
             double[] sidesAscending = sides.OrderBy(x => x).ToArray();
             
-            return Math.Abs(Math.Pow(sidesAscending[0], 2) * Math.Pow(sidesAscending[1], 2) - Math.Pow(sidesAscending[2], 2)) < equalityTolerance;
+            return CompareWithTolerance(
+                Math.Pow(sidesAscending[0], 2) * Math.Pow(sidesAscending[1], 2), 
+                Math.Pow(sidesAscending[2], 2), 
+                comparisonTolerance);
         }
 
-        private bool IsValid(double a, double b, double c)
+        private static bool IsValid(double a, double b, double c)
         {
             return (a + b > c)
                    && (a + c > b)
                    && (b + c > a);
         }
 
-        private bool CompareWithTolerance(double a, double b, double tolerance)
+        private static bool CompareWithTolerance(double a, double b, double tolerance)
         {
             return Math.Abs(a - b) < tolerance;
         }
