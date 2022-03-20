@@ -15,7 +15,7 @@ namespace Shapes.Tests
         public void TestConstructor_ValidSides_Success(double a, double b, double c)
         {
             Triangle actual = new Triangle(a, b, c);
-            
+
             Assert.NotNull(actual);
             Assert.Equal(a, actual.A);
             Assert.Equal(b, actual.B);
@@ -33,14 +33,14 @@ namespace Shapes.Tests
         {
             Assert.Throws<ArgumentOutOfRangeException>(
                 () => new Triangle(a, b, c)
-                );
+            );
         }
 
         [Theory]
-        [InlineData(new double[] { 0.3, 0.4, 0.5 }, true)]
-        [InlineData(new double[] { 3, 4, 5 }, true)]
-        [InlineData(new double[] { 6, 6, 3 }, false)]
-        [InlineData(new double[] { 6, 6, 6 }, false)]
+        [InlineData(new double[] {0.3, 0.4, 0.5}, true)]
+        [InlineData(new double[] {3, 4, 5}, true)]
+        [InlineData(new double[] {6, 6, 3}, false)]
+        [InlineData(new double[] {6, 6, 6}, false)]
         public void TestIsRight_ValidSides(double[] sides, bool expected)
         {
             const int aIndex = 0;
@@ -53,13 +53,11 @@ namespace Shapes.Tests
             Assert.Equal(expected, actual);
         }
 
-
-
         [Theory]
-        [InlineData(new double[] { 0.3, 0.4, 0.5 }, 0.06)]
-        [InlineData(new double[] { 3, 4, 5 }, 6)]
-        [InlineData(new double[] { 6, 6, 3 }, 8.7142)]
-        [InlineData(new double[] { 6, 6, 6 }, 15.5885)]
+        [InlineData(new double[] {0.3, 0.4, 0.5}, 0.06)]
+        [InlineData(new double[] {3, 4, 5}, 6)]
+        [InlineData(new double[] {6, 6, 3}, 8.7142)]
+        [InlineData(new double[] {6, 6, 6}, 15.5885)]
         public void TestArea(double[] sides, double expected)
         {
             const int aIndex = 0;
