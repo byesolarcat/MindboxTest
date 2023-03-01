@@ -1,4 +1,6 @@
 SELECT [p].[Name], [c].[Name]
 FROM [Products] AS [p]
+INNER JOIN [ProductCategories] as [pc]
+    ON [p].[ID] = [pc].[ID]
 LEFT JOIN [Categories] as [c]
-    ON [p].[Id] = [c].[Id]
+    ON [pc].[CategoryID] = [c].[Id]
